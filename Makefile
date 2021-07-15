@@ -1,3 +1,5 @@
+.PHONY: test all old/structdef-go-v1.pb.go structdef-gogo-v1.pb.go structdef-go-v1.pb.go structdef-go-v2.pb.go
+
 test:
 	rm results.txt || true
 	go test -count=1 -bench=. | grep Benchmark_Go > results.txt
