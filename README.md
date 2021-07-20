@@ -30,25 +30,93 @@ To update the table in the README:
 The data being serialized is the following structure with randomly generated values:
 
 ```proto
-message Go {
+message GoV1 {
   string name = 1;
   int64 birthDay = 2;
   string phone = 3;
   int32 siblings = 4;
   bool spouse = 5;
   double money = 6;
-  Type type = 7;
+  TypeV1 type = 7;
   oneof values {
     string value_s = 8;
     int32 value_i = 9;
     double value_d = 10;
   }
+  AddressV1 Address = 11;
 }
 
-enum Type {
-  TYPE_UNSPECIFIED = 0;
-  TYPE_R = 1;
-  TYPE_S = 2;
+enum TypeV1 {
+  TYPEV1_UNSPECIFIED = 0;
+  TYPEV1_R = 1;
+  TYPEV1_S = 2;
+}
+
+message AddressV1 {
+  string street = 1;
+  int32 number = 2;
+  int32 post_code = 3;
+  int32 floor = 4;
+  RandomV1 random = 5;
+}
+
+message RandomV1 {
+  string FieldA = 1;
+  string FieldB = 2;
+  string FieldC = 3;
+  string FieldD = 4;
+  string FieldE = 5;
+  string FieldF = 6;
+  string FielG = 7;
+  string FieldH = 8;
+  string FieldI = 9;
+  string FieldJ = 10;
+  int64 FieldK = 11;
+  int64 FieldL = 12;
+  int64 FieldM = 13;
+  int64 FieldN = 14;
+  string FieldO = 15;
+  string FieldP = 16;
+  int32 FieldQ = 17;
+  string FieldR = 18;
+  string FieldS = 19;
+  string FieldT = 20;
+  int32 FieldU = 21;
+  int32 FieldV = 22;
+  int32 FieldW = 23;
+  int32 FieldX = 24;
+  string FieldY = 25;
+  bool FieldZ = 26;
+  NestedRandomV1 nested_random = 34;
+}
+
+message NestedRandomV1 {
+  string FieldA = 1;
+  string FieldB = 2;
+  string FieldC = 3;
+  string FieldD = 4;
+  string FieldE = 5;
+  string FieldF = 6;
+  double FielG = 7;
+  double FieldH = 8;
+  double FieldI = 9;
+  double FieldJ = 10;
+  double FieldK = 11;
+  double FieldL = 12;
+  string FieldM = 13;
+  string FieldN = 14;
+  string FieldO = 15;
+  string FieldP = 16;
+  int64 FieldQ = 17;
+  int64 FieldR = 18;
+  int64 FieldS = 19;
+  int64 FieldT = 20;
+  string FieldU = 21;
+  string FieldV = 22;
+  string FieldW = 23;
+  string FieldX = 24;
+  bool FieldY = 25;
+  bool FieldZ = 26;
 }
 ```
 
