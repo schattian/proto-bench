@@ -2,8 +2,8 @@
 
 test:
 	rm results.txt || true
-	go test -count=1 -bench=. | grep Benchmark_Go > results.txt
-	cd old && go test -count=1 -bench=. | grep Benchmark_Go >> ../results.txt
+	go test -count=1 -timeout 5m -bench=. | grep Benchmark_Go > results.txt
+	cd old && go test -timeout 5m -count=1 -bench=. | grep Benchmark_Go >> ../results.txt
 	sort -o results.txt results.txt
 	cat results.txt
 

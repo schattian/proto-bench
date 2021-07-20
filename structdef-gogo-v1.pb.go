@@ -63,7 +63,8 @@ type GogoV1 struct {
 	//	*GogoV1_ValueS
 	//	*GogoV1_ValueI
 	//	*GogoV1_ValueD
-	Values isGogoV1_Values `protobuf_oneof:"values"`
+	Values  isGogoV1_Values `protobuf_oneof:"values"`
+	Address *AddressGoGoV1  `protobuf:"bytes,11,opt,name=address,proto3" json:"address,omitempty"`
 }
 
 func (m *GogoV1) Reset()         { *m = GogoV1{} }
@@ -196,6 +197,13 @@ func (m *GogoV1) GetValueD() float64 {
 	return 0
 }
 
+func (m *GogoV1) GetAddress() *AddressGoGoV1 {
+	if m != nil {
+		return m.Address
+	}
+	return nil
+}
+
 // XXX_OneofWrappers is for the internal use of the proto package.
 func (*GogoV1) XXX_OneofWrappers() []interface{} {
 	return []interface{}{
@@ -205,38 +213,514 @@ func (*GogoV1) XXX_OneofWrappers() []interface{} {
 	}
 }
 
+type AddressGoGoV1 struct {
+	Street   string        `protobuf:"bytes,1,opt,name=street,proto3" json:"street,omitempty"`
+	Number   int32         `protobuf:"varint,2,opt,name=number,proto3" json:"number,omitempty"`
+	PostCode int32         `protobuf:"varint,3,opt,name=post_code,json=postCode,proto3" json:"post_code,omitempty"`
+	Floor    int32         `protobuf:"varint,4,opt,name=floor,proto3" json:"floor,omitempty"`
+	Random   *RandomGoGoV1 `protobuf:"bytes,5,opt,name=random,proto3" json:"random,omitempty"`
+}
+
+func (m *AddressGoGoV1) Reset()         { *m = AddressGoGoV1{} }
+func (m *AddressGoGoV1) String() string { return proto.CompactTextString(m) }
+func (*AddressGoGoV1) ProtoMessage()    {}
+func (*AddressGoGoV1) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b9d837b81e69b7b4, []int{1}
+}
+func (m *AddressGoGoV1) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *AddressGoGoV1) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_AddressGoGoV1.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *AddressGoGoV1) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddressGoGoV1.Merge(m, src)
+}
+func (m *AddressGoGoV1) XXX_Size() int {
+	return m.Size()
+}
+func (m *AddressGoGoV1) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddressGoGoV1.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AddressGoGoV1 proto.InternalMessageInfo
+
+func (m *AddressGoGoV1) GetStreet() string {
+	if m != nil {
+		return m.Street
+	}
+	return ""
+}
+
+func (m *AddressGoGoV1) GetNumber() int32 {
+	if m != nil {
+		return m.Number
+	}
+	return 0
+}
+
+func (m *AddressGoGoV1) GetPostCode() int32 {
+	if m != nil {
+		return m.PostCode
+	}
+	return 0
+}
+
+func (m *AddressGoGoV1) GetFloor() int32 {
+	if m != nil {
+		return m.Floor
+	}
+	return 0
+}
+
+func (m *AddressGoGoV1) GetRandom() *RandomGoGoV1 {
+	if m != nil {
+		return m.Random
+	}
+	return nil
+}
+
+type RandomGoGoV1 struct {
+	FieldA       string              `protobuf:"bytes,1,opt,name=FieldA,proto3" json:"FieldA,omitempty"`
+	FieldB       string              `protobuf:"bytes,2,opt,name=FieldB,proto3" json:"FieldB,omitempty"`
+	FieldC       string              `protobuf:"bytes,3,opt,name=FieldC,proto3" json:"FieldC,omitempty"`
+	FieldD       string              `protobuf:"bytes,4,opt,name=FieldD,proto3" json:"FieldD,omitempty"`
+	FieldE       string              `protobuf:"bytes,5,opt,name=FieldE,proto3" json:"FieldE,omitempty"`
+	FieldF       string              `protobuf:"bytes,6,opt,name=FieldF,proto3" json:"FieldF,omitempty"`
+	FielG        string              `protobuf:"bytes,7,opt,name=FielG,proto3" json:"FielG,omitempty"`
+	FieldH       string              `protobuf:"bytes,8,opt,name=FieldH,proto3" json:"FieldH,omitempty"`
+	FieldI       string              `protobuf:"bytes,9,opt,name=FieldI,proto3" json:"FieldI,omitempty"`
+	FieldJ       string              `protobuf:"bytes,10,opt,name=FieldJ,proto3" json:"FieldJ,omitempty"`
+	FieldK       int64               `protobuf:"varint,11,opt,name=FieldK,proto3" json:"FieldK,omitempty"`
+	FieldL       int64               `protobuf:"varint,12,opt,name=FieldL,proto3" json:"FieldL,omitempty"`
+	FieldM       int64               `protobuf:"varint,13,opt,name=FieldM,proto3" json:"FieldM,omitempty"`
+	FieldN       int64               `protobuf:"varint,14,opt,name=FieldN,proto3" json:"FieldN,omitempty"`
+	FieldO       string              `protobuf:"bytes,15,opt,name=FieldO,proto3" json:"FieldO,omitempty"`
+	FieldP       string              `protobuf:"bytes,16,opt,name=FieldP,proto3" json:"FieldP,omitempty"`
+	FieldQ       int32               `protobuf:"varint,17,opt,name=FieldQ,proto3" json:"FieldQ,omitempty"`
+	FieldR       string              `protobuf:"bytes,18,opt,name=FieldR,proto3" json:"FieldR,omitempty"`
+	FieldS       string              `protobuf:"bytes,19,opt,name=FieldS,proto3" json:"FieldS,omitempty"`
+	FieldT       string              `protobuf:"bytes,20,opt,name=FieldT,proto3" json:"FieldT,omitempty"`
+	FieldU       int32               `protobuf:"varint,21,opt,name=FieldU,proto3" json:"FieldU,omitempty"`
+	FieldV       int32               `protobuf:"varint,22,opt,name=FieldV,proto3" json:"FieldV,omitempty"`
+	FieldW       int32               `protobuf:"varint,23,opt,name=FieldW,proto3" json:"FieldW,omitempty"`
+	FieldX       int32               `protobuf:"varint,24,opt,name=FieldX,proto3" json:"FieldX,omitempty"`
+	FieldY       string              `protobuf:"bytes,25,opt,name=FieldY,proto3" json:"FieldY,omitempty"`
+	FieldZ       bool                `protobuf:"varint,26,opt,name=FieldZ,proto3" json:"FieldZ,omitempty"`
+	NestedRandom *NestedRandomGoGoV1 `protobuf:"bytes,34,opt,name=nested_random,json=nestedRandom,proto3" json:"nested_random,omitempty"`
+}
+
+func (m *RandomGoGoV1) Reset()         { *m = RandomGoGoV1{} }
+func (m *RandomGoGoV1) String() string { return proto.CompactTextString(m) }
+func (*RandomGoGoV1) ProtoMessage()    {}
+func (*RandomGoGoV1) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b9d837b81e69b7b4, []int{2}
+}
+func (m *RandomGoGoV1) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *RandomGoGoV1) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_RandomGoGoV1.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *RandomGoGoV1) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RandomGoGoV1.Merge(m, src)
+}
+func (m *RandomGoGoV1) XXX_Size() int {
+	return m.Size()
+}
+func (m *RandomGoGoV1) XXX_DiscardUnknown() {
+	xxx_messageInfo_RandomGoGoV1.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RandomGoGoV1 proto.InternalMessageInfo
+
+func (m *RandomGoGoV1) GetFieldA() string {
+	if m != nil {
+		return m.FieldA
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldB() string {
+	if m != nil {
+		return m.FieldB
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldC() string {
+	if m != nil {
+		return m.FieldC
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldD() string {
+	if m != nil {
+		return m.FieldD
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldE() string {
+	if m != nil {
+		return m.FieldE
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldF() string {
+	if m != nil {
+		return m.FieldF
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFielG() string {
+	if m != nil {
+		return m.FielG
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldH() string {
+	if m != nil {
+		return m.FieldH
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldI() string {
+	if m != nil {
+		return m.FieldI
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldJ() string {
+	if m != nil {
+		return m.FieldJ
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldK() int64 {
+	if m != nil {
+		return m.FieldK
+	}
+	return 0
+}
+
+func (m *RandomGoGoV1) GetFieldL() int64 {
+	if m != nil {
+		return m.FieldL
+	}
+	return 0
+}
+
+func (m *RandomGoGoV1) GetFieldM() int64 {
+	if m != nil {
+		return m.FieldM
+	}
+	return 0
+}
+
+func (m *RandomGoGoV1) GetFieldN() int64 {
+	if m != nil {
+		return m.FieldN
+	}
+	return 0
+}
+
+func (m *RandomGoGoV1) GetFieldO() string {
+	if m != nil {
+		return m.FieldO
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldP() string {
+	if m != nil {
+		return m.FieldP
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldQ() int32 {
+	if m != nil {
+		return m.FieldQ
+	}
+	return 0
+}
+
+func (m *RandomGoGoV1) GetFieldR() string {
+	if m != nil {
+		return m.FieldR
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldS() string {
+	if m != nil {
+		return m.FieldS
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldT() string {
+	if m != nil {
+		return m.FieldT
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldU() int32 {
+	if m != nil {
+		return m.FieldU
+	}
+	return 0
+}
+
+func (m *RandomGoGoV1) GetFieldV() int32 {
+	if m != nil {
+		return m.FieldV
+	}
+	return 0
+}
+
+func (m *RandomGoGoV1) GetFieldW() int32 {
+	if m != nil {
+		return m.FieldW
+	}
+	return 0
+}
+
+func (m *RandomGoGoV1) GetFieldX() int32 {
+	if m != nil {
+		return m.FieldX
+	}
+	return 0
+}
+
+func (m *RandomGoGoV1) GetFieldY() string {
+	if m != nil {
+		return m.FieldY
+	}
+	return ""
+}
+
+func (m *RandomGoGoV1) GetFieldZ() bool {
+	if m != nil {
+		return m.FieldZ
+	}
+	return false
+}
+
+func (m *RandomGoGoV1) GetNestedRandom() *NestedRandomGoGoV1 {
+	if m != nil {
+		return m.NestedRandom
+	}
+	return nil
+}
+
+type NestedRandomGoGoV1 struct {
+	FieldA string  `protobuf:"bytes,1,opt,name=FieldA,proto3" json:"FieldA,omitempty"`
+	FieldB string  `protobuf:"bytes,2,opt,name=FieldB,proto3" json:"FieldB,omitempty"`
+	FieldC string  `protobuf:"bytes,3,opt,name=FieldC,proto3" json:"FieldC,omitempty"`
+	FieldD string  `protobuf:"bytes,4,opt,name=FieldD,proto3" json:"FieldD,omitempty"`
+	FieldE string  `protobuf:"bytes,5,opt,name=FieldE,proto3" json:"FieldE,omitempty"`
+	FieldF string  `protobuf:"bytes,6,opt,name=FieldF,proto3" json:"FieldF,omitempty"`
+	FielG  float64 `protobuf:"fixed64,7,opt,name=FielG,proto3" json:"FielG,omitempty"`
+	FieldH float64 `protobuf:"fixed64,8,opt,name=FieldH,proto3" json:"FieldH,omitempty"`
+	FieldI float64 `protobuf:"fixed64,9,opt,name=FieldI,proto3" json:"FieldI,omitempty"`
+	FieldJ float64 `protobuf:"fixed64,10,opt,name=FieldJ,proto3" json:"FieldJ,omitempty"`
+	FieldK float64 `protobuf:"fixed64,11,opt,name=FieldK,proto3" json:"FieldK,omitempty"`
+}
+
+func (m *NestedRandomGoGoV1) Reset()         { *m = NestedRandomGoGoV1{} }
+func (m *NestedRandomGoGoV1) String() string { return proto.CompactTextString(m) }
+func (*NestedRandomGoGoV1) ProtoMessage()    {}
+func (*NestedRandomGoGoV1) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b9d837b81e69b7b4, []int{3}
+}
+func (m *NestedRandomGoGoV1) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *NestedRandomGoGoV1) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_NestedRandomGoGoV1.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *NestedRandomGoGoV1) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_NestedRandomGoGoV1.Merge(m, src)
+}
+func (m *NestedRandomGoGoV1) XXX_Size() int {
+	return m.Size()
+}
+func (m *NestedRandomGoGoV1) XXX_DiscardUnknown() {
+	xxx_messageInfo_NestedRandomGoGoV1.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_NestedRandomGoGoV1 proto.InternalMessageInfo
+
+func (m *NestedRandomGoGoV1) GetFieldA() string {
+	if m != nil {
+		return m.FieldA
+	}
+	return ""
+}
+
+func (m *NestedRandomGoGoV1) GetFieldB() string {
+	if m != nil {
+		return m.FieldB
+	}
+	return ""
+}
+
+func (m *NestedRandomGoGoV1) GetFieldC() string {
+	if m != nil {
+		return m.FieldC
+	}
+	return ""
+}
+
+func (m *NestedRandomGoGoV1) GetFieldD() string {
+	if m != nil {
+		return m.FieldD
+	}
+	return ""
+}
+
+func (m *NestedRandomGoGoV1) GetFieldE() string {
+	if m != nil {
+		return m.FieldE
+	}
+	return ""
+}
+
+func (m *NestedRandomGoGoV1) GetFieldF() string {
+	if m != nil {
+		return m.FieldF
+	}
+	return ""
+}
+
+func (m *NestedRandomGoGoV1) GetFielG() float64 {
+	if m != nil {
+		return m.FielG
+	}
+	return 0
+}
+
+func (m *NestedRandomGoGoV1) GetFieldH() float64 {
+	if m != nil {
+		return m.FieldH
+	}
+	return 0
+}
+
+func (m *NestedRandomGoGoV1) GetFieldI() float64 {
+	if m != nil {
+		return m.FieldI
+	}
+	return 0
+}
+
+func (m *NestedRandomGoGoV1) GetFieldJ() float64 {
+	if m != nil {
+		return m.FieldJ
+	}
+	return 0
+}
+
+func (m *NestedRandomGoGoV1) GetFieldK() float64 {
+	if m != nil {
+		return m.FieldK
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterEnum("protobench.TypeGoGoV1", TypeGoGoV1_name, TypeGoGoV1_value)
 	proto.RegisterType((*GogoV1)(nil), "protobench.GogoV1")
+	proto.RegisterType((*AddressGoGoV1)(nil), "protobench.AddressGoGoV1")
+	proto.RegisterType((*RandomGoGoV1)(nil), "protobench.RandomGoGoV1")
+	proto.RegisterType((*NestedRandomGoGoV1)(nil), "protobench.NestedRandomGoGoV1")
 }
 
 func init() { proto.RegisterFile("structdef-gogo-v1.proto", fileDescriptor_b9d837b81e69b7b4) }
 
 var fileDescriptor_b9d837b81e69b7b4 = []byte{
-	// 355 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x8f, 0xcf, 0x6a, 0xea, 0x40,
-	0x14, 0x87, 0x33, 0xfe, 0x89, 0xf1, 0x70, 0xb9, 0x84, 0xe1, 0xe2, 0x9d, 0xeb, 0x22, 0x84, 0xbb,
-	0x0a, 0x82, 0x91, 0xdc, 0xbb, 0xec, 0xce, 0xc6, 0xa6, 0x42, 0xa9, 0x32, 0x5a, 0xa1, 0xdd, 0x48,
-	0xa2, 0xd3, 0x24, 0xa0, 0x99, 0xe0, 0x24, 0xd2, 0xbc, 0x45, 0xdf, 0xa0, 0xaf, 0xd3, 0xa5, 0xcb,
-	0x2e, 0x8b, 0xbe, 0x48, 0x49, 0x2c, 0x49, 0xe9, 0x6a, 0x7e, 0xdf, 0xf9, 0xe6, 0xcc, 0x39, 0x03,
-	0xbf, 0x45, 0xb2, 0x4b, 0x57, 0xc9, 0x9a, 0x3d, 0xf6, 0x7d, 0xee, 0xf3, 0xfe, 0xde, 0x32, 0xe3,
-	0x1d, 0x4f, 0x38, 0x86, 0xe2, 0xf0, 0x58, 0xb4, 0x0a, 0xfe, 0xbe, 0xd4, 0x40, 0x76, 0xb8, 0xcf,
-	0x17, 0x16, 0xc6, 0xd0, 0x88, 0xdc, 0x2d, 0x23, 0x48, 0x47, 0x46, 0x9b, 0x16, 0x19, 0x77, 0x41,
-	0xf1, 0xc2, 0x5d, 0x12, 0xd8, 0x6e, 0x46, 0x6a, 0x3a, 0x32, 0xea, 0xb4, 0x64, 0xfc, 0x0b, 0x9a,
-	0x71, 0xc0, 0x23, 0x46, 0xea, 0x45, 0xc3, 0x19, 0xf2, 0x0e, 0x11, 0x7a, 0x9b, 0x30, 0xf2, 0x05,
-	0x69, 0xe8, 0xc8, 0x68, 0xd2, 0x92, 0x71, 0x07, 0x64, 0x11, 0xf3, 0x54, 0x30, 0xd2, 0xd4, 0x91,
-	0xa1, 0xd0, 0x4f, 0xca, 0x5f, 0xda, 0xf2, 0x88, 0x65, 0x44, 0xd6, 0x91, 0x81, 0xe8, 0x19, 0x70,
-	0x0f, 0x1a, 0x49, 0x16, 0x33, 0xd2, 0xd2, 0x91, 0xf1, 0xf3, 0x5f, 0xc7, 0xac, 0xb6, 0x36, 0xe7,
-	0x59, 0xcc, 0x1c, 0xee, 0xf0, 0x85, 0x45, 0x8b, 0x3b, 0xf8, 0x0f, 0xb4, 0xf6, 0xee, 0x26, 0x65,
-	0x4b, 0x41, 0x94, 0x7c, 0x9b, 0x6b, 0x89, 0xca, 0x45, 0x61, 0x56, 0xa9, 0x90, 0xb4, 0xf3, 0x7d,
-	0x4a, 0x35, 0xae, 0xd4, 0x9a, 0x40, 0x3e, 0xb9, 0x54, 0xf6, 0x50, 0x81, 0x73, 0x12, 0xbd, 0x1b,
-	0x80, 0x6a, 0x1c, 0xee, 0x42, 0x67, 0x7e, 0x3f, 0x1d, 0x39, 0x13, 0x67, 0xb2, 0xb0, 0x96, 0x77,
-	0xb7, 0xb3, 0xe9, 0xe8, 0x72, 0x7c, 0x35, 0x1e, 0xd9, 0xaa, 0x84, 0x55, 0xf8, 0xf1, 0xc5, 0x51,
-	0x15, 0x7d, 0xab, 0xcc, 0xd4, 0xda, 0xd0, 0x7e, 0x3d, 0x6a, 0xe8, 0x70, 0xd4, 0xd0, 0xfb, 0x51,
-	0x43, 0xcf, 0x27, 0x4d, 0x3a, 0x9c, 0x34, 0xe9, 0xed, 0xa4, 0x49, 0x0f, 0x3d, 0x3f, 0x4c, 0x82,
-	0xd4, 0x33, 0x57, 0x7c, 0x3b, 0x70, 0x37, 0xec, 0x49, 0x04, 0x49, 0x18, 0x0d, 0xaa, 0x4f, 0x5f,
-	0x54, 0xd1, 0x93, 0x8b, 0xfc, 0xff, 0x23, 0x00, 0x00, 0xff, 0xff, 0x82, 0x51, 0xbf, 0xfd, 0xe3,
-	0x01, 0x00, 0x00,
+	// 702 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x94, 0xcb, 0x6e, 0xda, 0x40,
+	0x14, 0x86, 0x19, 0x12, 0x08, 0x4c, 0x48, 0x4a, 0xa7, 0x29, 0x39, 0x49, 0x25, 0x84, 0x58, 0xa1,
+	0x48, 0x21, 0x25, 0x59, 0x76, 0x15, 0xae, 0x21, 0x17, 0xa0, 0x86, 0x90, 0xcb, 0x06, 0x01, 0x9e,
+	0x80, 0x25, 0xf0, 0x20, 0xdb, 0x44, 0xe5, 0x2d, 0xba, 0xee, 0xba, 0x2f, 0xd2, 0x5d, 0x97, 0x59,
+	0x74, 0xd1, 0x65, 0x95, 0xbc, 0x48, 0xe5, 0xb1, 0x7d, 0x98, 0xb4, 0xcd, 0xbe, 0x2b, 0xe6, 0xff,
+	0xce, 0x19, 0xcf, 0xef, 0x33, 0x3f, 0xa6, 0xdb, 0xb6, 0x63, 0xcd, 0x87, 0x8e, 0xce, 0xef, 0xf6,
+	0x47, 0x62, 0x24, 0xf6, 0xef, 0x0b, 0xf9, 0x99, 0x25, 0x1c, 0xc1, 0xa8, 0xfc, 0x19, 0x70, 0x73,
+	0x38, 0xce, 0xfe, 0x08, 0xd3, 0x68, 0x4d, 0x8c, 0x44, 0xb7, 0xc0, 0x18, 0x5d, 0x35, 0xfb, 0x53,
+	0x0e, 0x24, 0x43, 0x72, 0x71, 0x4d, 0xae, 0xd9, 0x2e, 0x8d, 0x0d, 0x0c, 0xcb, 0x19, 0x97, 0xfb,
+	0x0b, 0x08, 0x67, 0x48, 0x6e, 0x45, 0x43, 0xcd, 0xb6, 0x68, 0x64, 0x36, 0x16, 0x26, 0x87, 0x15,
+	0xb9, 0xc1, 0x13, 0xee, 0x0e, 0xdb, 0x18, 0x4c, 0x0c, 0x73, 0x64, 0xc3, 0x6a, 0x86, 0xe4, 0x22,
+	0x1a, 0x6a, 0x96, 0xa2, 0x51, 0x7b, 0x26, 0xe6, 0x36, 0x87, 0x48, 0x86, 0xe4, 0x62, 0x9a, 0xaf,
+	0xdc, 0x27, 0x4d, 0x85, 0xc9, 0x17, 0x10, 0xcd, 0x90, 0x1c, 0xd1, 0x3c, 0xc1, 0xf6, 0xe8, 0xaa,
+	0xb3, 0x98, 0x71, 0x58, 0xcb, 0x90, 0xdc, 0xe6, 0x61, 0x2a, 0xbf, 0x74, 0x9d, 0xef, 0x2c, 0x66,
+	0xbc, 0x26, 0x6a, 0xa2, 0x5b, 0xd0, 0x64, 0x0f, 0xdb, 0xa1, 0x6b, 0xf7, 0xfd, 0xc9, 0x9c, 0xf7,
+	0x6c, 0x88, 0xb9, 0x6e, 0x4e, 0x42, 0x5a, 0x54, 0x82, 0xf6, 0xb2, 0x64, 0x40, 0xdc, 0xf5, 0x83,
+	0xa5, 0xfa, 0xb2, 0xa4, 0x03, 0x75, 0x4f, 0xc6, 0x52, 0x99, 0x1d, 0xd1, 0xb5, 0xbe, 0xae, 0x5b,
+	0xdc, 0xb6, 0x61, 0x3d, 0x43, 0x72, 0xeb, 0x87, 0x3b, 0xea, 0xf9, 0xc7, 0x5e, 0xc9, 0xb7, 0x10,
+	0x74, 0x16, 0x63, 0xd4, 0xdb, 0x6e, 0x67, 0xbf, 0x12, 0xba, 0xf1, 0xac, 0x49, 0xbe, 0xbb, 0x63,
+	0x71, 0xee, 0xf8, 0xf3, 0xf5, 0x95, 0xcb, 0xcd, 0xf9, 0x74, 0xc0, 0x2d, 0x39, 0xdf, 0x88, 0xe6,
+	0x2b, 0xf6, 0x8e, 0xc6, 0x67, 0xc2, 0x76, 0x7a, 0x43, 0xa1, 0x7b, 0x13, 0x8e, 0x68, 0x31, 0x17,
+	0x94, 0x84, 0x2e, 0x07, 0x76, 0x37, 0x11, 0xc2, 0xf2, 0x27, 0xec, 0x09, 0xf6, 0x9e, 0x46, 0xad,
+	0xbe, 0xa9, 0x8b, 0xa9, 0x1c, 0xef, 0xfa, 0x21, 0xa8, 0x96, 0x35, 0x59, 0xf1, 0x1d, 0xfb, 0x7d,
+	0xd9, 0x6f, 0x11, 0x9a, 0x50, 0x0b, 0xae, 0x9b, 0xaa, 0xc1, 0x27, 0xfa, 0x71, 0xe0, 0xd2, 0x53,
+	0xc8, 0x8b, 0xd2, 0x65, 0xc0, 0x8b, 0xc8, 0x4b, 0x7e, 0x08, 0x7c, 0x85, 0xbc, 0x2c, 0x1d, 0x06,
+	0xbc, 0x8c, 0xbc, 0x22, 0x2d, 0x06, 0xbc, 0x82, 0xbc, 0x2a, 0x23, 0x10, 0xf0, 0xaa, 0xfb, 0xa2,
+	0xee, 0xaa, 0x26, 0x43, 0x10, 0xd7, 0x3c, 0x81, 0xdd, 0x27, 0xde, 0x65, 0xfb, 0xdd, 0x27, 0xc8,
+	0xeb, 0xf2, 0xa6, 0x03, 0x5e, 0x47, 0x7e, 0x2a, 0xaf, 0x39, 0xe0, 0xa7, 0xc8, 0xcf, 0xe4, 0x1d,
+	0xaf, 0xf8, 0xfc, 0x0c, 0xf9, 0x39, 0x24, 0x14, 0x7e, 0x8e, 0xfc, 0x02, 0x36, 0x14, 0x7e, 0x81,
+	0xbc, 0x01, 0x9b, 0x0a, 0x6f, 0x20, 0x6f, 0xc2, 0x2b, 0xe5, 0xdc, 0x26, 0xf2, 0x16, 0x24, 0x15,
+	0xde, 0x42, 0xfe, 0x11, 0x5e, 0x7b, 0x59, 0xf0, 0x14, 0x72, 0x0d, 0x98, 0xd2, 0xaf, 0x21, 0x6f,
+	0xc3, 0x1b, 0x85, 0xb7, 0x91, 0x77, 0x60, 0x4b, 0xe1, 0x1d, 0xe4, 0x97, 0xf0, 0x56, 0x79, 0xfe,
+	0x25, 0xf2, 0x2e, 0xa4, 0x14, 0xde, 0x45, 0x7e, 0x05, 0xdb, 0x0a, 0xbf, 0x42, 0x7e, 0x0d, 0xa0,
+	0xf0, 0x6b, 0xe4, 0x37, 0xb0, 0xa3, 0x9c, 0x7b, 0x83, 0xfc, 0x16, 0x76, 0xbd, 0xff, 0xbd, 0xa7,
+	0x58, 0x89, 0x6e, 0x98, 0xdc, 0x76, 0xb8, 0xde, 0xf3, 0x73, 0x9b, 0x95, 0xb9, 0x4d, 0xab, 0xb9,
+	0x6d, 0xc8, 0x86, 0x67, 0xe9, 0x4d, 0x98, 0x0a, 0xcb, 0x7e, 0x09, 0x53, 0xf6, 0x77, 0xd3, 0xff,
+	0x9d, 0x64, 0xf2, 0xef, 0x24, 0x93, 0x17, 0x92, 0x4c, 0x5e, 0x48, 0x32, 0x79, 0x21, 0xc9, 0x01,
+	0x3f, 0xdb, 0x3b, 0xa7, 0x74, 0xf9, 0xad, 0x64, 0xbb, 0x34, 0xd5, 0xb9, 0x69, 0x55, 0x6a, 0xcd,
+	0x5a, 0xb3, 0x5b, 0xe8, 0x5d, 0x36, 0xda, 0xad, 0x4a, 0xa9, 0x5e, 0xad, 0x57, 0xca, 0xc9, 0x10,
+	0x4b, 0xd2, 0x84, 0x52, 0xd3, 0x92, 0xe4, 0x0f, 0xd2, 0x4e, 0x86, 0x8b, 0xe5, 0xef, 0x8f, 0x69,
+	0xf2, 0xf0, 0x98, 0x26, 0xbf, 0x1e, 0xd3, 0xe4, 0xf3, 0x53, 0x3a, 0xf4, 0xf0, 0x94, 0x0e, 0xfd,
+	0x7c, 0x4a, 0x87, 0x6e, 0xf7, 0x46, 0x86, 0x33, 0x9e, 0x0f, 0xf2, 0x43, 0x31, 0x3d, 0xe8, 0x4f,
+	0xf8, 0x27, 0x7b, 0xec, 0x18, 0xe6, 0xc1, 0xf2, 0x1a, 0x3f, 0x2c, 0x97, 0x83, 0xa8, 0x5c, 0x1f,
+	0xfd, 0x0e, 0x00, 0x00, 0xff, 0xff, 0xdb, 0x76, 0x03, 0x36, 0xa0, 0x06, 0x00, 0x00,
 }
 
 func (m *GogoV1) Marshal() (dAtA []byte, err error) {
@@ -259,6 +743,18 @@ func (m *GogoV1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.Address != nil {
+		{
+			size, err := m.Address.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintStructdefGogoV1(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x5a
+	}
 	if m.Values != nil {
 		{
 			size := m.Values.Size()
@@ -355,6 +851,384 @@ func (m *GogoV1_ValueD) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	dAtA[i] = 0x51
 	return len(dAtA) - i, nil
 }
+func (m *AddressGoGoV1) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *AddressGoGoV1) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *AddressGoGoV1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Random != nil {
+		{
+			size, err := m.Random.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintStructdefGogoV1(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x2a
+	}
+	if m.Floor != 0 {
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(m.Floor))
+		i--
+		dAtA[i] = 0x20
+	}
+	if m.PostCode != 0 {
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(m.PostCode))
+		i--
+		dAtA[i] = 0x18
+	}
+	if m.Number != 0 {
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(m.Number))
+		i--
+		dAtA[i] = 0x10
+	}
+	if len(m.Street) > 0 {
+		i -= len(m.Street)
+		copy(dAtA[i:], m.Street)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.Street)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *RandomGoGoV1) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *RandomGoGoV1) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *RandomGoGoV1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.NestedRandom != nil {
+		{
+			size, err := m.NestedRandom.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintStructdefGogoV1(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x2
+		i--
+		dAtA[i] = 0x92
+	}
+	if m.FieldZ {
+		i--
+		if m.FieldZ {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0xd0
+	}
+	if len(m.FieldY) > 0 {
+		i -= len(m.FieldY)
+		copy(dAtA[i:], m.FieldY)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldY)))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0xca
+	}
+	if m.FieldX != 0 {
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(m.FieldX))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0xc0
+	}
+	if m.FieldW != 0 {
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(m.FieldW))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0xb8
+	}
+	if m.FieldV != 0 {
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(m.FieldV))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0xb0
+	}
+	if m.FieldU != 0 {
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(m.FieldU))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0xa8
+	}
+	if len(m.FieldT) > 0 {
+		i -= len(m.FieldT)
+		copy(dAtA[i:], m.FieldT)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldT)))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0xa2
+	}
+	if len(m.FieldS) > 0 {
+		i -= len(m.FieldS)
+		copy(dAtA[i:], m.FieldS)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldS)))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x9a
+	}
+	if len(m.FieldR) > 0 {
+		i -= len(m.FieldR)
+		copy(dAtA[i:], m.FieldR)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldR)))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x92
+	}
+	if m.FieldQ != 0 {
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(m.FieldQ))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x88
+	}
+	if len(m.FieldP) > 0 {
+		i -= len(m.FieldP)
+		copy(dAtA[i:], m.FieldP)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldP)))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x82
+	}
+	if len(m.FieldO) > 0 {
+		i -= len(m.FieldO)
+		copy(dAtA[i:], m.FieldO)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldO)))
+		i--
+		dAtA[i] = 0x7a
+	}
+	if m.FieldN != 0 {
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(m.FieldN))
+		i--
+		dAtA[i] = 0x70
+	}
+	if m.FieldM != 0 {
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(m.FieldM))
+		i--
+		dAtA[i] = 0x68
+	}
+	if m.FieldL != 0 {
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(m.FieldL))
+		i--
+		dAtA[i] = 0x60
+	}
+	if m.FieldK != 0 {
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(m.FieldK))
+		i--
+		dAtA[i] = 0x58
+	}
+	if len(m.FieldJ) > 0 {
+		i -= len(m.FieldJ)
+		copy(dAtA[i:], m.FieldJ)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldJ)))
+		i--
+		dAtA[i] = 0x52
+	}
+	if len(m.FieldI) > 0 {
+		i -= len(m.FieldI)
+		copy(dAtA[i:], m.FieldI)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldI)))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if len(m.FieldH) > 0 {
+		i -= len(m.FieldH)
+		copy(dAtA[i:], m.FieldH)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldH)))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.FielG) > 0 {
+		i -= len(m.FielG)
+		copy(dAtA[i:], m.FielG)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FielG)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.FieldF) > 0 {
+		i -= len(m.FieldF)
+		copy(dAtA[i:], m.FieldF)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldF)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.FieldE) > 0 {
+		i -= len(m.FieldE)
+		copy(dAtA[i:], m.FieldE)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldE)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.FieldD) > 0 {
+		i -= len(m.FieldD)
+		copy(dAtA[i:], m.FieldD)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldD)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.FieldC) > 0 {
+		i -= len(m.FieldC)
+		copy(dAtA[i:], m.FieldC)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldC)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.FieldB) > 0 {
+		i -= len(m.FieldB)
+		copy(dAtA[i:], m.FieldB)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldB)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.FieldA) > 0 {
+		i -= len(m.FieldA)
+		copy(dAtA[i:], m.FieldA)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldA)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *NestedRandomGoGoV1) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *NestedRandomGoGoV1) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *NestedRandomGoGoV1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.FieldK != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.FieldK))))
+		i--
+		dAtA[i] = 0x59
+	}
+	if m.FieldJ != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.FieldJ))))
+		i--
+		dAtA[i] = 0x51
+	}
+	if m.FieldI != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.FieldI))))
+		i--
+		dAtA[i] = 0x49
+	}
+	if m.FieldH != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.FieldH))))
+		i--
+		dAtA[i] = 0x41
+	}
+	if m.FielG != 0 {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(m.FielG))))
+		i--
+		dAtA[i] = 0x39
+	}
+	if len(m.FieldF) > 0 {
+		i -= len(m.FieldF)
+		copy(dAtA[i:], m.FieldF)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldF)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.FieldE) > 0 {
+		i -= len(m.FieldE)
+		copy(dAtA[i:], m.FieldE)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldE)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.FieldD) > 0 {
+		i -= len(m.FieldD)
+		copy(dAtA[i:], m.FieldD)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldD)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.FieldC) > 0 {
+		i -= len(m.FieldC)
+		copy(dAtA[i:], m.FieldC)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldC)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.FieldB) > 0 {
+		i -= len(m.FieldB)
+		copy(dAtA[i:], m.FieldB)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldB)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.FieldA) > 0 {
+		i -= len(m.FieldA)
+		copy(dAtA[i:], m.FieldA)
+		i = encodeVarintStructdefGogoV1(dAtA, i, uint64(len(m.FieldA)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintStructdefGogoV1(dAtA []byte, offset int, v uint64) int {
 	offset -= sovStructdefGogoV1(v)
 	base := offset
@@ -398,6 +1272,10 @@ func (m *GogoV1) Size() (n int) {
 	if m.Values != nil {
 		n += m.Values.Size()
 	}
+	if m.Address != nil {
+		l = m.Address.Size()
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
 	return n
 }
 
@@ -427,6 +1305,186 @@ func (m *GogoV1_ValueD) Size() (n int) {
 	var l int
 	_ = l
 	n += 9
+	return n
+}
+func (m *AddressGoGoV1) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Street)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	if m.Number != 0 {
+		n += 1 + sovStructdefGogoV1(uint64(m.Number))
+	}
+	if m.PostCode != 0 {
+		n += 1 + sovStructdefGogoV1(uint64(m.PostCode))
+	}
+	if m.Floor != 0 {
+		n += 1 + sovStructdefGogoV1(uint64(m.Floor))
+	}
+	if m.Random != nil {
+		l = m.Random.Size()
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	return n
+}
+
+func (m *RandomGoGoV1) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.FieldA)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldB)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldC)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldD)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldE)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldF)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FielG)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldH)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldI)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldJ)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	if m.FieldK != 0 {
+		n += 1 + sovStructdefGogoV1(uint64(m.FieldK))
+	}
+	if m.FieldL != 0 {
+		n += 1 + sovStructdefGogoV1(uint64(m.FieldL))
+	}
+	if m.FieldM != 0 {
+		n += 1 + sovStructdefGogoV1(uint64(m.FieldM))
+	}
+	if m.FieldN != 0 {
+		n += 1 + sovStructdefGogoV1(uint64(m.FieldN))
+	}
+	l = len(m.FieldO)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldP)
+	if l > 0 {
+		n += 2 + l + sovStructdefGogoV1(uint64(l))
+	}
+	if m.FieldQ != 0 {
+		n += 2 + sovStructdefGogoV1(uint64(m.FieldQ))
+	}
+	l = len(m.FieldR)
+	if l > 0 {
+		n += 2 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldS)
+	if l > 0 {
+		n += 2 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldT)
+	if l > 0 {
+		n += 2 + l + sovStructdefGogoV1(uint64(l))
+	}
+	if m.FieldU != 0 {
+		n += 2 + sovStructdefGogoV1(uint64(m.FieldU))
+	}
+	if m.FieldV != 0 {
+		n += 2 + sovStructdefGogoV1(uint64(m.FieldV))
+	}
+	if m.FieldW != 0 {
+		n += 2 + sovStructdefGogoV1(uint64(m.FieldW))
+	}
+	if m.FieldX != 0 {
+		n += 2 + sovStructdefGogoV1(uint64(m.FieldX))
+	}
+	l = len(m.FieldY)
+	if l > 0 {
+		n += 2 + l + sovStructdefGogoV1(uint64(l))
+	}
+	if m.FieldZ {
+		n += 3
+	}
+	if m.NestedRandom != nil {
+		l = m.NestedRandom.Size()
+		n += 2 + l + sovStructdefGogoV1(uint64(l))
+	}
+	return n
+}
+
+func (m *NestedRandomGoGoV1) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.FieldA)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldB)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldC)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldD)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldE)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	l = len(m.FieldF)
+	if l > 0 {
+		n += 1 + l + sovStructdefGogoV1(uint64(l))
+	}
+	if m.FielG != 0 {
+		n += 9
+	}
+	if m.FieldH != 0 {
+		n += 9
+	}
+	if m.FieldI != 0 {
+		n += 9
+	}
+	if m.FieldJ != 0 {
+		n += 9
+	}
+	if m.FieldK != 0 {
+		n += 9
+	}
 	return n
 }
 
@@ -680,6 +1738,1303 @@ func (m *GogoV1) Unmarshal(dAtA []byte) error {
 			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
 			iNdEx += 8
 			m.Values = &GogoV1_ValueD{float64(math.Float64frombits(v))}
+		case 11:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Address == nil {
+				m.Address = &AddressGoGoV1{}
+			}
+			if err := m.Address.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipStructdefGogoV1(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *AddressGoGoV1) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowStructdefGogoV1
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: AddressGoGoV1: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: AddressGoGoV1: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Street", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Street = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Number", wireType)
+			}
+			m.Number = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Number |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PostCode", wireType)
+			}
+			m.PostCode = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.PostCode |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Floor", wireType)
+			}
+			m.Floor = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Floor |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Random", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Random == nil {
+				m.Random = &RandomGoGoV1{}
+			}
+			if err := m.Random.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipStructdefGogoV1(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *RandomGoGoV1) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowStructdefGogoV1
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: RandomGoGoV1: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: RandomGoGoV1: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldA", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldA = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldB", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldB = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldC", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldC = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldD", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldD = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldE", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldE = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldF", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldF = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FielG", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FielG = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldH", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldH = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldI", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldI = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 10:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldJ", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldJ = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 11:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldK", wireType)
+			}
+			m.FieldK = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.FieldK |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 12:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldL", wireType)
+			}
+			m.FieldL = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.FieldL |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 13:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldM", wireType)
+			}
+			m.FieldM = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.FieldM |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 14:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldN", wireType)
+			}
+			m.FieldN = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.FieldN |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 15:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldO", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldO = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 16:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldP", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldP = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 17:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldQ", wireType)
+			}
+			m.FieldQ = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.FieldQ |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 18:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldR", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldR = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 19:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldS", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldS = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 20:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldT", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldT = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 21:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldU", wireType)
+			}
+			m.FieldU = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.FieldU |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 22:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldV", wireType)
+			}
+			m.FieldV = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.FieldV |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 23:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldW", wireType)
+			}
+			m.FieldW = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.FieldW |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 24:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldX", wireType)
+			}
+			m.FieldX = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.FieldX |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 25:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldY", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldY = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 26:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldZ", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.FieldZ = bool(v != 0)
+		case 34:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NestedRandom", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.NestedRandom == nil {
+				m.NestedRandom = &NestedRandomGoGoV1{}
+			}
+			if err := m.NestedRandom.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipStructdefGogoV1(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *NestedRandomGoGoV1) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowStructdefGogoV1
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: NestedRandomGoGoV1: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: NestedRandomGoGoV1: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldA", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldA = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldB", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldB = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldC", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldC = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldD", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldD = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldE", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldE = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldF", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStructdefGogoV1
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStructdefGogoV1
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.FieldF = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FielG", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.FielG = float64(math.Float64frombits(v))
+		case 8:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldH", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.FieldH = float64(math.Float64frombits(v))
+		case 9:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldI", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.FieldI = float64(math.Float64frombits(v))
+		case 10:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldJ", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.FieldJ = float64(math.Float64frombits(v))
+		case 11:
+			if wireType != 1 {
+				return fmt.Errorf("proto: wrong wireType = %d for field FieldK", wireType)
+			}
+			var v uint64
+			if (iNdEx + 8) > l {
+				return io.ErrUnexpectedEOF
+			}
+			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
+			iNdEx += 8
+			m.FieldK = float64(math.Float64frombits(v))
 		default:
 			iNdEx = preIndex
 			skippy, err := skipStructdefGogoV1(dAtA[iNdEx:])

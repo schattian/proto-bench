@@ -16,10 +16,63 @@ message GoV1 {
     int32 value_i = 9;
     double value_d = 10;
   }
+  AddressV1 Address = 11;
 }
 
 enum TypeV1 {
   TYPEV1_UNSPECIFIED = 0;
   TYPEV1_R = 1;
   TYPEV1_S = 2;
+}
+
+message AddressV1 {
+  string street = 1;
+  int32 number = 2;
+  int32 post_code = 3;
+  int32 floor = 4;
+  RandomV1 random = 5;
+}
+
+message RandomV1 {
+  string FieldA = 1;
+  string FieldB = 2;
+  string FieldC = 3;
+  string FieldD = 4;
+  string FieldE = 5;
+  string FieldF = 6;
+  string FielG = 7;
+  string FieldH = 8;
+  string FieldI = 9;
+  string FieldJ = 10;
+  int64 FieldK = 11;
+  int64 FieldL = 12;
+  int64 FieldM = 13;
+  int64 FieldN = 14;
+  string FieldO = 15;
+  string FieldP = 16;
+  int32 FieldQ = 17;
+  string FieldR = 18;
+  string FieldS = 19;
+  string FieldT = 20;
+  int32 FieldU = 21;
+  int32 FieldV = 22;
+  int32 FieldW = 23;
+  int32 FieldX = 24;
+  string FieldY = 25;
+  bool FieldZ = 26;
+  NestedRandomV1 nested_random = 34;
+}
+
+message NestedRandomV1 {
+  string FieldA = 1;
+  string FieldB = 2;
+  string FieldC = 3;
+  string FieldD = 4;
+  string FieldE = 5;
+  string FieldF = 6;
+  double FielG = 7;
+  double FieldH = 8;
+  double FieldI = 9;
+  double FieldJ = 10;
+  double FieldK = 11;
 }

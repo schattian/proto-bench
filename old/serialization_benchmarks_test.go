@@ -11,7 +11,7 @@ import (
 	"github.com/golang/protobuf/proto"
 )
 
-func init(){
+func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
@@ -37,6 +37,53 @@ func generateGoV1(n int) []*GoV1 {
 			Money:    rand.Float64(),
 			Type:     TypeV1(rand.Intn(4)),
 			Values:   &GoV1_ValueS{ValueS: randString(5)},
+			Address: &AddressV1{
+				Street:   randString(5),
+				Number:   rand.Int31n(20),
+				PostCode: rand.Int31n(5),
+				Floor:    rand.Int31n(5),
+				Random: &RandomV1{
+					FieldA: randString(5),
+					FieldB: randString(5),
+					FieldC: randString(5),
+					FieldD: randString(5),
+					FieldE: randString(5),
+					FieldF: randString(5),
+					FielG:  randString(5),
+					FieldH: randString(5),
+					FieldI: randString(5),
+					FieldJ: randString(5),
+					FieldK: rand.Int63n(5),
+					FieldL: rand.Int63n(5),
+					FieldM: rand.Int63n(5),
+					FieldN: rand.Int63n(5),
+					FieldO: randString(5),
+					FieldP: randString(5),
+					FieldQ: rand.Int31n(5),
+					FieldR: randString(5),
+					FieldS: randString(5),
+					FieldT: randString(5),
+					FieldU: rand.Int31n(5),
+					FieldV: rand.Int31n(5),
+					FieldW: rand.Int31n(5),
+					FieldX: rand.Int31n(5),
+					FieldY: randString(5),
+					FieldZ: rand.Intn(2) == 1,
+					NestedRandom: &NestedRandomV1{
+						FieldA: randString(5),
+						FieldB: randString(5),
+						FieldC: randString(5),
+						FieldD: randString(5),
+						FieldE: randString(5),
+						FieldF: randString(5),
+						FielG:  rand.Float64(),
+						FieldH: rand.Float64(),
+						FieldI: rand.Float64(),
+						FieldJ: rand.Float64(),
+						FieldK: rand.Float64(),
+					},
+				},
+			},
 		})
 	}
 	return a
@@ -129,7 +176,7 @@ func Benchmark_GoV1old_JSON_Unmarshal(b *testing.B) {
 	}
 }
 
-func randomI(n int)[]int{
+func randomI(n int) []int {
 	randomI := make([]int, n)
 	for i := 0; i < len(randomI); i++ {
 		randomI[i] = i
