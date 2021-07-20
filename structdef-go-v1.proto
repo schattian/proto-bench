@@ -75,4 +75,19 @@ message NestedRandomV1 {
   double FieldI = 9;
   double FieldJ = 10;
   double FieldK = 11;
+  double FieldL = 12;
+  string FieldM = 13;
+  string FieldN = 14;
+  string FieldO = 15;
+  string FieldP = 16;
+  int64 FieldQ = 17;
+  int64 FieldR = 18;
+  int64 FieldS = 19;
+  int64 FieldT = 20;
+  string FieldU = 21;
+  string FieldV = 22;
+  string FieldW = 23;
+  string FieldX = 24;
+  bool FieldY = 25;
+  bool FieldZ = 26;
 }
