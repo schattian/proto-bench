@@ -8,8 +8,8 @@ import (
 	"time"
 
 	gogojsonpb "github.com/gogo/protobuf/jsonpb"
-	gogoproto "github.com/schattian/protobench/gogo"
-	"github.com/schattian/protobench/official"
+	gogo "github.com/schattian/protobench/gogo"
+	official "github.com/schattian/protobench/official"
 	officialjsonpb "google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 )
@@ -29,18 +29,18 @@ func randString(l int) string {
 // github.com/golang/protobuf (aka V1)
 // google.golang.org/protobuf (aka V2)
 
-func generateGoV2(n int) []official.Official {
-	a := make([]official.Official, 0, n)
+func generateGoV2(n int) []official.Message {
+	a := make([]official.Message, 0, n)
 	for i := 0; i < n; i++ {
-		a = append(a, official.Official{
+		a = append(a, official.Message{
 			Name:     randString(16),
 			BirthDay: time.Now().UnixNano(),
 			Phone:    randString(10),
 			Siblings: rand.Int31n(5),
 			Spouse:   rand.Intn(2) == 1,
 			Money:    rand.Float64(),
-			Type:     official.TypeOfficial(rand.Intn(4)),
-			Values:   &official.Official_ValueS{ValueS: randString(5)},
+			Type:     official.Type(rand.Intn(4)),
+			Values:   &official.Message_ValueS{ValueS: randString(5)},
 		})
 	}
 	return a
@@ -52,7 +52,7 @@ func Benchmark_GoV2_Proto_Marshal(b *testing.B) {
 	b.ResetTimer()
 	var serialSize int
 	for i := 0; i < b.N; i++ {
-		bytes, err := proto.Marshal(data[rand.Intn(len(data))])
+		bytes, err := proto.Marshal(&data[rand.Intn(len(data))])
 		if err != nil {
 			b.Fatal(err)
 		}
@@ -68,7 +68,7 @@ func Benchmark_GoV2_Proto_Unmarshal(b *testing.B) {
 	var serialSize int
 	for i, d := range data {
 		var err error
-		ser[i], err = proto.Marshal(d)
+		ser[i], err = proto.Marshal(&d)
 		if err != nil {
 			b.Fatal(err)
 		}
@@ -80,7 +80,7 @@ func Benchmark_GoV2_Proto_Unmarshal(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		n := rand.Intn(len(ser))
-		o := &official.Official{}
+		o := &official.Message{}
 		err := proto.Unmarshal(ser[n], o)
 		if err != nil {
 			b.Fatalf("goprotobuf failed to unmarshal: %s (%s)", err, ser[n])
@@ -94,7 +94,7 @@ func Benchmark_GoV2_JSON_Marshal(b *testing.B) {
 	b.ResetTimer()
 	var serialSize int
 	for i := 0; i < b.N; i++ {
-		bytes, err := officialjsonpb.Marshal(data[rand.Intn(len(data))])
+		bytes, err := officialjsonpb.Marshal(&data[rand.Intn(len(data))])
 		if err != nil {
 			b.Fatal(err)
 		}
@@ -110,7 +110,7 @@ func Benchmark_GoV2_JSON_Unmarshal(b *testing.B) {
 	var serialSize int
 	for i, d := range data {
 		var err error
-		ser[i], err = officialjsonpb.Marshal(d)
+		ser[i], err = officialjsonpb.Marshal(&d)
 		if err != nil {
 			b.Fatal(err)
 		}
@@ -123,7 +123,7 @@ func Benchmark_GoV2_JSON_Unmarshal(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		n := randomI[i]
-		o := &official.Official{}
+		o := &official.Message{}
 		err := officialjsonpb.Unmarshal(ser[n], o)
 		if err != nil {
 			b.Fatalf("goprotobuf failed to unmarshal: %s (%s)", err, ser[n])
@@ -133,18 +133,18 @@ func Benchmark_GoV2_JSON_Unmarshal(b *testing.B) {
 
 // github.com/gogo/protobuf/proto (aka gogo)
 
-func generateGogoV1(n int) []*gogoproto.Gogo {
-	a := make([]*gogoproto.Gogo, 0, n)
+func generateGogoV1(n int) []*gogo.Message {
+	a := make([]*gogo.Message, 0, n)
 	for i := 0; i < n; i++ {
-		a = append(a, &gogoproto.Gogo{
+		a = append(a, &gogo.Message{
 			Name:     randString(16),
 			BirthDay: time.Now().UnixNano(),
 			Phone:    randString(10),
 			Siblings: rand.Int31n(5),
 			Spouse:   rand.Intn(2) == 1,
 			Money:    rand.Float64(),
-			Type:     TypeGoGoV1(rand.Intn(4)),
-			Values:   &gogoproto.Gogo_ValueS{ValueS: randString(5)},
+			Type:     gogo.Type(rand.Intn(4)),
+			Values:   &gogo.Message_ValueS{ValueS: randString(5)},
 		})
 	}
 	return a
@@ -184,7 +184,7 @@ func Benchmark_GogoV1_Proto_Unmarshal(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		n := rand.Intn(len(ser))
-		o := &gogoproto.Gogo{}
+		o := &gogo.Message{}
 		err := o.Unmarshal(ser[n])
 		if err != nil {
 			b.Fatalf("gogoprotobuf failed to unmarshal: %s (%s)", err, ser[n])
@@ -231,7 +231,7 @@ func Benchmark_GogoV1_JSON_Unmarshal(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		n := randomI[i]
-		o := &gogoproto.Gogo{}
+		o := &gogo.Message{}
 		err := unmarshaler.Unmarshal(&ser[n], o)
 		if err != nil {
 			b.Fatalf("gogoprotobuf failed to unmarshal: %s (%s)", err, ser[n].String())
