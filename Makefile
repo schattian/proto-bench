@@ -5,24 +5,13 @@ test:
 	sort -o results.txt results.txt
 	cat results.txt
 
-all: old/structdef-go-v1.pb.go structdef-gogo-v1.pb.go structdef-go-v1.pb.go structdef-go-v2.pb.go
+all: official.pb.go gogo.pb.go
 
-old/structdef-go-v1.pb.go: structdef-go-v1.proto
-	go get github.com/golang/protobuf/protoc-gen-go@v1.3.5
-	protoc --go_out=paths=source_relative:./old structdef-go-v1.proto
+official.pb.go: official.proto
+	docker run --rm -v $(pwd):/src:rw protoc -I /src --go_out=paths=source_relative:. official.proto
 
-structdef-gogo-v1.pb.go: structdef-gogo-v1.proto
-	go get github.com/gogo/protobuf/protoc-gen-gogofaster
-	protoc --gogofaster_out=paths=source_relative:. structdef-gogo-v1.proto
-
-structdef-go-v1.pb.go: structdef-go-v1.proto
-	go get github.com/golang/protobuf/protoc-gen-go@latest
-	protoc --go_out=paths=source_relative:. structdef-go-v1.proto
-
-structdef-go-v2.pb.go: structdef-go-v2.proto
-	go get google.golang.org/protobuf/cmd/protoc-gen-go@latest
-	protoc --go_out=paths=source_relative:. structdef-go-v2.proto
+gogo.pb.go: gogo.proto
+	docker run --rm -v $(pwd):/src:rw protoc -I /src --gogofaster_out=paths=source_relative:. gogo.proto
 
 clean:
 	rm -f *.pb.go
-	rm -f old/*.pb.go

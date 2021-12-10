@@ -1,4 +1,4 @@
-module github.com/alexshtin/proto-bench/old
+module github.com/schattian/proto-bench/old
 
 go 1.14
 
