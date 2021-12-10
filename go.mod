@@ -1,4 +1,4 @@
-module github.com/schattian/proto-bench
+module github.com/schattian/protobench
 
 go 1.17
 

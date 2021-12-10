@@ -24,6 +24,7 @@ func randString(l int) string {
 	return fmt.Sprintf("%x", buf)[:l]
 }
 
+// github.com/golang/protobuf (aka V1)
 // google.golang.org/protobuf (aka V2)
 
 func generateGoV2(n int) []*GoV2 {
@@ -130,7 +131,7 @@ func Benchmark_GoV2_JSON_Unmarshal(b *testing.B) {
 
 // github.com/gogo/protobuf/proto (aka gogo)
 
-func generateGogoV1(n int) []*GogoV1 {
+func generateGogoV1(n int) []*gogoproto.GogoV1 {
 	a := make([]*GogoV1, 0, n)
 	for i := 0; i < n; i++ {
 		a = append(a, &GogoV1{
