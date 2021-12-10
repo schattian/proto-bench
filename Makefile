@@ -8,10 +8,10 @@ test:
 all: official.pb.go gogo.pb.go
 
 official.pb.go: official.proto
-	docker run --rm -v $(pwd):/src:rw protoc -I /src --go_out=paths=source_relative:. official.proto
+	docker run --rm -v $(CURDIR):/src:rw $(PROTOC_DOCKER_IMAGE) -I /src --go_out=paths=source_relative:. official.proto
 
 gogo.pb.go: gogo.proto
-	docker run --rm -v $(pwd):/src:rw protoc -I /src --gogofaster_out=paths=source_relative:. gogo.proto
+	docker run --rm -v $(CURDIR):/src:rw $(PROTOC_DOCKER_IMAGE) -I /src --gogofaster_out=paths=source_relative:. gogo.proto
 
 clean:
 	rm -f *.pb.go
