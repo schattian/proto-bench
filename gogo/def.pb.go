@@ -6,15 +6,20 @@ package def
 import (
 	encoding_binary "encoding/binary"
 	fmt "fmt"
+	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
+	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 	io "io"
 	math "math"
+	time "time"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
+var _ = time.Kitchen
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
@@ -63,6 +68,8 @@ type Message struct {
 	//	*Message_ValueI
 	//	*Message_ValueD
 	Values isMessage_Values `protobuf_oneof:"values"`
+	Book   *Book            `protobuf:"bytes,11,opt,name=book,proto3" json:"book,omitempty"`
+	Ts     time.Time        `protobuf:"bytes,12,opt,name=ts,proto3,stdtime" json:"ts"`
 }
 
 func (m *Message) Reset()         { *m = Message{} }
@@ -195,6 +202,20 @@ func (m *Message) GetValueD() float64 {
 	return 0
 }
 
+func (m *Message) GetBook() *Book {
+	if m != nil {
+		return m.Book
+	}
+	return nil
+}
+
+func (m *Message) GetTs() time.Time {
+	if m != nil {
+		return m.Ts
+	}
+	return time.Time{}
+}
+
 // XXX_OneofFuncs is for the internal use of the proto package.
 func (*Message) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
 	return _Message_OneofMarshaler, _Message_OneofUnmarshaler, _Message_OneofSizer, []interface{}{
@@ -274,36 +295,178 @@ func _Message_OneofSizer(msg proto.Message) (n int) {
 	return n
 }
 
+type Book struct {
+	RandomReader string   `protobuf:"bytes,1,opt,name=random_reader,json=randomReader,proto3" json:"random_reader,omitempty"`
+	Readers      []string `protobuf:"bytes,2,rep,name=readers,proto3" json:"readers,omitempty"`
+	Author       *Author  `protobuf:"bytes,3,opt,name=Author,proto3" json:"Author,omitempty"`
+}
+
+func (m *Book) Reset()         { *m = Book{} }
+func (m *Book) String() string { return proto.CompactTextString(m) }
+func (*Book) ProtoMessage()    {}
+func (*Book) Descriptor() ([]byte, []int) {
+	return fileDescriptor_76fb0470a3b910d8, []int{1}
+}
+func (m *Book) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Book) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Book.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Book) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Book.Merge(m, src)
+}
+func (m *Book) XXX_Size() int {
+	return m.Size()
+}
+func (m *Book) XXX_DiscardUnknown() {
+	xxx_messageInfo_Book.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Book proto.InternalMessageInfo
+
+func (m *Book) GetRandomReader() string {
+	if m != nil {
+		return m.RandomReader
+	}
+	return ""
+}
+
+func (m *Book) GetReaders() []string {
+	if m != nil {
+		return m.Readers
+	}
+	return nil
+}
+
+func (m *Book) GetAuthor() *Author {
+	if m != nil {
+		return m.Author
+	}
+	return nil
+}
+
+type Author struct {
+	Name      string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	LastName  string `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	Age       int32  `protobuf:"varint,3,opt,name=age,proto3" json:"age,omitempty"`
+	RandomNum int64  `protobuf:"varint,4,opt,name=random_num,json=randomNum,proto3" json:"random_num,omitempty"`
+}
+
+func (m *Author) Reset()         { *m = Author{} }
+func (m *Author) String() string { return proto.CompactTextString(m) }
+func (*Author) ProtoMessage()    {}
+func (*Author) Descriptor() ([]byte, []int) {
+	return fileDescriptor_76fb0470a3b910d8, []int{2}
+}
+func (m *Author) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Author) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Author.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalTo(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Author) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Author.Merge(m, src)
+}
+func (m *Author) XXX_Size() int {
+	return m.Size()
+}
+func (m *Author) XXX_DiscardUnknown() {
+	xxx_messageInfo_Author.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Author proto.InternalMessageInfo
+
+func (m *Author) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Author) GetLastName() string {
+	if m != nil {
+		return m.LastName
+	}
+	return ""
+}
+
+func (m *Author) GetAge() int32 {
+	if m != nil {
+		return m.Age
+	}
+	return 0
+}
+
+func (m *Author) GetRandomNum() int64 {
+	if m != nil {
+		return m.RandomNum
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterEnum("protobench.Type", Type_name, Type_value)
 	proto.RegisterType((*Message)(nil), "protobench.Message")
+	proto.RegisterType((*Book)(nil), "protobench.Book")
+	proto.RegisterType((*Author)(nil), "protobench.Author")
 }
 
 func init() { proto.RegisterFile("def.proto", fileDescriptor_76fb0470a3b910d8) }
 
 var fileDescriptor_76fb0470a3b910d8 = []byte{
-	// 327 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x44, 0x8f, 0xb1, 0x4e, 0xc2, 0x50,
-	0x14, 0x86, 0x7b, 0xa0, 0x94, 0x72, 0x06, 0xd3, 0xdc, 0x10, 0x73, 0x75, 0x68, 0x1a, 0x75, 0x68,
-	0x1c, 0x4a, 0xa2, 0xae, 0x2e, 0x08, 0x46, 0x06, 0x0d, 0xb9, 0xe0, 0xa0, 0x0b, 0x69, 0xe1, 0x40,
-	0x9b, 0x40, 0xdb, 0x70, 0x8b, 0x49, 0xdf, 0xc2, 0xd9, 0x27, 0x72, 0x64, 0x74, 0x34, 0xf0, 0x22,
-	0xa6, 0xb7, 0xa6, 0x9d, 0xfa, 0x7f, 0xe7, 0xcb, 0xe9, 0xf9, 0x2f, 0x76, 0x16, 0xb4, 0xf4, 0xd2,
-	0x6d, 0x92, 0x25, 0x0c, 0xd5, 0x27, 0xa0, 0x78, 0x1e, 0x5e, 0x7c, 0x35, 0xb0, 0xfd, 0x4c, 0x52,
-	0xfa, 0x2b, 0x62, 0x0c, 0xf5, 0xd8, 0xdf, 0x10, 0x07, 0x07, 0xdc, 0x8e, 0x50, 0x99, 0x9d, 0xa3,
-	0x19, 0x44, 0xdb, 0x2c, 0x1c, 0xf8, 0x39, 0x6f, 0x38, 0xe0, 0x36, 0x45, 0xc5, 0xac, 0x8b, 0xad,
-	0x34, 0x4c, 0x62, 0xe2, 0x4d, 0xb5, 0x50, 0x42, 0xb1, 0x21, 0xa3, 0x60, 0x1d, 0xc5, 0x2b, 0xc9,
-	0x75, 0x07, 0xdc, 0x96, 0xa8, 0x98, 0x9d, 0xa2, 0x21, 0xd3, 0x64, 0x27, 0x89, 0xb7, 0x1c, 0x70,
-	0x4d, 0xf1, 0x4f, 0xc5, 0x9f, 0x36, 0x49, 0x4c, 0x39, 0x37, 0x1c, 0x70, 0x41, 0x94, 0xc0, 0xae,
-	0x50, 0xcf, 0xf2, 0x94, 0x78, 0xdb, 0x01, 0xf7, 0xe4, 0xc6, 0xf2, 0xea, 0xda, 0xde, 0x34, 0x4f,
-	0x49, 0x28, 0xcb, 0xce, 0xb0, 0xfd, 0xe1, 0xaf, 0x77, 0x34, 0x93, 0xdc, 0x2c, 0x7a, 0x3c, 0x69,
-	0xc2, 0x50, 0x83, 0x49, 0xad, 0x22, 0xde, 0x29, 0x9a, 0x54, 0x6a, 0x54, 0xab, 0x05, 0xc7, 0xe2,
-	0x66, 0xa5, 0x06, 0x7d, 0x13, 0xcb, 0x24, 0xaf, 0xef, 0x50, 0x2f, 0x0e, 0xb1, 0x2e, 0x5a, 0xd3,
-	0xb7, 0xf1, 0x70, 0xf6, 0xfa, 0x32, 0x19, 0x0f, 0x1f, 0x46, 0x8f, 0xa3, 0xe1, 0xc0, 0xd2, 0x18,
-	0xa2, 0xa1, 0xa6, 0xc2, 0x82, 0x2a, 0x4f, 0xac, 0x46, 0xff, 0xfe, 0xfb, 0x60, 0xc3, 0xfe, 0x60,
-	0xc3, 0xef, 0xc1, 0x86, 0xcf, 0xa3, 0xad, 0xed, 0x8f, 0xb6, 0xf6, 0x73, 0xb4, 0xb5, 0xf7, 0xcb,
-	0x55, 0x94, 0x85, 0xbb, 0xc0, 0x9b, 0x27, 0x9b, 0x9e, 0x9c, 0x87, 0x7e, 0x96, 0x45, 0x7e, 0xdc,
-	0xab, 0x9f, 0xd5, 0x5b, 0xd0, 0x32, 0x30, 0x14, 0xdf, 0xfe, 0x05, 0x00, 0x00, 0xff, 0xff, 0x16,
-	0x66, 0x2f, 0x08, 0xb1, 0x01, 0x00, 0x00,
+	// 514 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x91, 0x4f, 0x6f, 0xd3, 0x4c,
+	0x10, 0xc6, 0xbd, 0x4e, 0xe2, 0xd8, 0xd3, 0xbe, 0xaf, 0xac, 0x55, 0x85, 0x96, 0x20, 0x5c, 0xab,
+	0xe5, 0x60, 0xf5, 0xe0, 0x48, 0xa5, 0x57, 0x0e, 0x84, 0x16, 0x91, 0x03, 0x51, 0xb5, 0x09, 0x07,
+	0xb8, 0x44, 0x76, 0xb2, 0xb1, 0x4d, 0x63, 0xaf, 0xf1, 0xae, 0x91, 0xf2, 0x2d, 0xfa, 0xb1, 0x7a,
+	0xec, 0x91, 0x13, 0xa0, 0xe4, 0x3b, 0x70, 0x46, 0xde, 0xcd, 0x1f, 0x90, 0x38, 0xed, 0x3c, 0xcf,
+	0x6f, 0x76, 0x67, 0x76, 0x06, 0x9c, 0x39, 0x5b, 0x84, 0x65, 0xc5, 0x25, 0xc7, 0xa0, 0x8e, 0x98,
+	0x15, 0xb3, 0xb4, 0x77, 0x9a, 0x70, 0x9e, 0x2c, 0x59, 0x5f, 0x5b, 0xf5, 0xa2, 0x2f, 0xb3, 0x9c,
+	0x09, 0x19, 0xe5, 0xa5, 0x4e, 0xee, 0x41, 0xc2, 0x13, 0xae, 0xe3, 0xb3, 0x5f, 0x26, 0x74, 0xdf,
+	0x33, 0x21, 0xa2, 0x84, 0x61, 0x0c, 0xed, 0x22, 0xca, 0x19, 0x41, 0x3e, 0x0a, 0x1c, 0xaa, 0x62,
+	0xdc, 0x03, 0x3b, 0xce, 0x2a, 0x99, 0x5e, 0x47, 0x2b, 0x62, 0xfa, 0x28, 0x68, 0xd1, 0xbd, 0xc6,
+	0x27, 0xd0, 0x29, 0x53, 0x5e, 0x30, 0xd2, 0x52, 0x17, 0xb4, 0x68, 0x6e, 0x88, 0x2c, 0x5e, 0x66,
+	0x45, 0x22, 0x48, 0xdb, 0x47, 0x41, 0x87, 0xee, 0x35, 0x7e, 0x02, 0x96, 0x28, 0x79, 0x2d, 0x18,
+	0xe9, 0xf8, 0x28, 0xb0, 0xe9, 0x56, 0x35, 0x2f, 0xe5, 0xbc, 0x60, 0x2b, 0x62, 0xf9, 0x28, 0x40,
+	0x54, 0x0b, 0xfc, 0x02, 0xda, 0x72, 0x55, 0x32, 0xd2, 0xf5, 0x51, 0xf0, 0xff, 0xa5, 0x1b, 0x1e,
+	0xfe, 0x18, 0x4e, 0x56, 0x25, 0xa3, 0x8a, 0xe2, 0xa7, 0xd0, 0xfd, 0x1a, 0x2d, 0x6b, 0x36, 0x15,
+	0xc4, 0x6e, 0xfa, 0x78, 0x67, 0x50, 0x4b, 0x19, 0xe3, 0x03, 0xca, 0x88, 0xd3, 0x74, 0xb2, 0x47,
+	0xc3, 0x03, 0x9a, 0x13, 0x68, 0x6a, 0xee, 0xd1, 0x75, 0x53, 0x36, 0xe6, 0xfc, 0x8e, 0x1c, 0xf9,
+	0x28, 0x38, 0xfa, 0xbb, 0xec, 0x80, 0xf3, 0x3b, 0xaa, 0x28, 0xbe, 0x02, 0x53, 0x0a, 0x72, 0xac,
+	0x72, 0x7a, 0xa1, 0x1e, 0x79, 0xb8, 0x1b, 0x79, 0x38, 0xd9, 0x8d, 0x7c, 0x60, 0x3f, 0x7c, 0x3f,
+	0x35, 0xee, 0x7f, 0x9c, 0x22, 0x6a, 0x4a, 0x31, 0xb0, 0x41, 0x57, 0x11, 0x67, 0x5f, 0xa0, 0xdd,
+	0xbc, 0x86, 0xcf, 0xe1, 0xbf, 0x2a, 0x2a, 0xe6, 0x3c, 0x9f, 0x56, 0x2c, 0x9a, 0xb3, 0x6a, 0x3b,
+	0xfd, 0x63, 0x6d, 0x52, 0xe5, 0x61, 0x02, 0x5d, 0x4d, 0x05, 0x31, 0xfd, 0x56, 0xe0, 0xd0, 0x9d,
+	0xc4, 0x17, 0x60, 0xbd, 0xae, 0x65, 0xca, 0x2b, 0xb5, 0x84, 0xa3, 0x4b, 0xfc, 0x67, 0xbb, 0x9a,
+	0xd0, 0x6d, 0xc6, 0xd9, 0xe7, 0x5d, 0xee, 0x3f, 0x37, 0xfd, 0x0c, 0x9c, 0x65, 0x24, 0xe4, 0x54,
+	0x01, 0x53, 0x01, 0xbb, 0x31, 0x46, 0x0d, 0x74, 0xa1, 0x15, 0x25, 0x7a, 0xd1, 0x1d, 0xda, 0x84,
+	0xf8, 0x39, 0xc0, 0xb6, 0xef, 0xa2, 0xce, 0xd5, 0xa2, 0x5b, 0xd4, 0xd1, 0xce, 0xa8, 0xce, 0x2f,
+	0xae, 0xa0, 0xdd, 0xec, 0x08, 0x9f, 0x80, 0x3b, 0xf9, 0x78, 0x7b, 0x33, 0xfd, 0x30, 0x1a, 0xdf,
+	0xde, 0xbc, 0x19, 0xbe, 0x1d, 0xde, 0x5c, 0xbb, 0x06, 0x06, 0xb0, 0x94, 0x4b, 0x5d, 0xb4, 0x8f,
+	0xc7, 0xae, 0x39, 0x78, 0xf5, 0xb0, 0xf6, 0xd0, 0xe3, 0xda, 0x43, 0x3f, 0xd7, 0x1e, 0xba, 0xdf,
+	0x78, 0xc6, 0xe3, 0xc6, 0x33, 0xbe, 0x6d, 0x3c, 0xe3, 0xd3, 0x79, 0x92, 0xc9, 0xb4, 0x8e, 0xc3,
+	0x19, 0xcf, 0xfb, 0x62, 0x96, 0x46, 0x52, 0x66, 0x51, 0xd1, 0x3f, 0xfc, 0xb5, 0x3f, 0x67, 0x8b,
+	0xd8, 0x52, 0xfa, 0xe5, 0xef, 0x00, 0x00, 0x00, 0xff, 0xff, 0x57, 0xc1, 0xe6, 0x85, 0x19, 0x03,
+	0x00, 0x00,
 }
 
 func (m *Message) Marshal() (dAtA []byte, err error) {
@@ -371,6 +534,24 @@ func (m *Message) MarshalTo(dAtA []byte) (int, error) {
 		}
 		i += nn1
 	}
+	if m.Book != nil {
+		dAtA[i] = 0x5a
+		i++
+		i = encodeVarintDef(dAtA, i, uint64(m.Book.Size()))
+		n2, err2 := m.Book.MarshalTo(dAtA[i:])
+		if err2 != nil {
+			return 0, err2
+		}
+		i += n2
+	}
+	dAtA[i] = 0x62
+	i++
+	i = encodeVarintDef(dAtA, i, uint64(github_com_gogo_protobuf_types.SizeOfStdTime(m.Ts)))
+	n3, err3 := github_com_gogo_protobuf_types.StdTimeMarshalTo(m.Ts, dAtA[i:])
+	if err3 != nil {
+		return 0, err3
+	}
+	i += n3
 	return i, nil
 }
 
@@ -397,6 +578,95 @@ func (m *Message_ValueD) MarshalTo(dAtA []byte) (int, error) {
 	i += 8
 	return i, nil
 }
+func (m *Book) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Book) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if len(m.RandomReader) > 0 {
+		dAtA[i] = 0xa
+		i++
+		i = encodeVarintDef(dAtA, i, uint64(len(m.RandomReader)))
+		i += copy(dAtA[i:], m.RandomReader)
+	}
+	if len(m.Readers) > 0 {
+		for _, s := range m.Readers {
+			dAtA[i] = 0x12
+			i++
+			l = len(s)
+			for l >= 1<<7 {
+				dAtA[i] = uint8(uint64(l)&0x7f | 0x80)
+				l >>= 7
+				i++
+			}
+			dAtA[i] = uint8(l)
+			i++
+			i += copy(dAtA[i:], s)
+		}
+	}
+	if m.Author != nil {
+		dAtA[i] = 0x1a
+		i++
+		i = encodeVarintDef(dAtA, i, uint64(m.Author.Size()))
+		n4, err4 := m.Author.MarshalTo(dAtA[i:])
+		if err4 != nil {
+			return 0, err4
+		}
+		i += n4
+	}
+	return i, nil
+}
+
+func (m *Author) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Author) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if len(m.Name) > 0 {
+		dAtA[i] = 0xa
+		i++
+		i = encodeVarintDef(dAtA, i, uint64(len(m.Name)))
+		i += copy(dAtA[i:], m.Name)
+	}
+	if len(m.LastName) > 0 {
+		dAtA[i] = 0x12
+		i++
+		i = encodeVarintDef(dAtA, i, uint64(len(m.LastName)))
+		i += copy(dAtA[i:], m.LastName)
+	}
+	if m.Age != 0 {
+		dAtA[i] = 0x18
+		i++
+		i = encodeVarintDef(dAtA, i, uint64(m.Age))
+	}
+	if m.RandomNum != 0 {
+		dAtA[i] = 0x20
+		i++
+		i = encodeVarintDef(dAtA, i, uint64(m.RandomNum))
+	}
+	return i, nil
+}
+
 func encodeVarintDef(dAtA []byte, offset int, v uint64) int {
 	for v >= 1<<7 {
 		dAtA[offset] = uint8(v&0x7f | 0x80)
@@ -438,6 +708,12 @@ func (m *Message) Size() (n int) {
 	if m.Values != nil {
 		n += m.Values.Size()
 	}
+	if m.Book != nil {
+		l = m.Book.Size()
+		n += 1 + l + sovDef(uint64(l))
+	}
+	l = github_com_gogo_protobuf_types.SizeOfStdTime(m.Ts)
+	n += 1 + l + sovDef(uint64(l))
 	return n
 }
 
@@ -467,6 +743,51 @@ func (m *Message_ValueD) Size() (n int) {
 	var l int
 	_ = l
 	n += 9
+	return n
+}
+func (m *Book) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.RandomReader)
+	if l > 0 {
+		n += 1 + l + sovDef(uint64(l))
+	}
+	if len(m.Readers) > 0 {
+		for _, s := range m.Readers {
+			l = len(s)
+			n += 1 + l + sovDef(uint64(l))
+		}
+	}
+	if m.Author != nil {
+		l = m.Author.Size()
+		n += 1 + l + sovDef(uint64(l))
+	}
+	return n
+}
+
+func (m *Author) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovDef(uint64(l))
+	}
+	l = len(m.LastName)
+	if l > 0 {
+		n += 1 + l + sovDef(uint64(l))
+	}
+	if m.Age != 0 {
+		n += 1 + sovDef(uint64(m.Age))
+	}
+	if m.RandomNum != 0 {
+		n += 1 + sovDef(uint64(m.RandomNum))
+	}
 	return n
 }
 
@@ -727,6 +1048,383 @@ func (m *Message) Unmarshal(dAtA []byte) error {
 			v = uint64(encoding_binary.LittleEndian.Uint64(dAtA[iNdEx:]))
 			iNdEx += 8
 			m.Values = &Message_ValueD{float64(math.Float64frombits(v))}
+		case 11:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Book", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDef
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDef
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDef
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Book == nil {
+				m.Book = &Book{}
+			}
+			if err := m.Book.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 12:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Ts", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDef
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDef
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDef
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := github_com_gogo_protobuf_types.StdTimeUnmarshal(&m.Ts, dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDef(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDef
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDef
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Book) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDef
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Book: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Book: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RandomReader", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDef
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDef
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDef
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RandomReader = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Readers", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDef
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDef
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDef
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Readers = append(m.Readers, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Author", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDef
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDef
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDef
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Author == nil {
+				m.Author = &Author{}
+			}
+			if err := m.Author.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDef(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDef
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDef
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Author) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDef
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Author: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Author: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDef
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDef
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDef
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field LastName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDef
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDef
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDef
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.LastName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Age", wireType)
+			}
+			m.Age = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDef
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Age |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RandomNum", wireType)
+			}
+			m.RandomNum = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDef
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.RandomNum |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipDef(dAtA[iNdEx:])
