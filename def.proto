@@ -3,14 +3,14 @@ syntax = "proto3";
 package protobench;
 option go_package = "github.com/schattian/protobench/official";
 
-message Official {
+message Message {
   string name = 1;
   int64 birthDay = 2;
   string phone = 3;
   int32 siblings = 4;
   bool spouse = 5;
   double money = 6;
-  TypeOfficial type = 7;
+  Type type = 7;
   oneof values {
     string value_s = 8;
     int32 value_i = 9;
@@ -18,8 +18,8 @@ message Official {
   }
 }
 
-enum TypeOfficial {
-  TYPEOFFICIAL_UNSPECIFIED = 0;
-  TYPEOFFICIAL_R = 1;
-  TYPEOFFICIAL_S = 2;
+enum Type {
+  TYPE_UNSPECIFIED = 0;
+  TYPE_R = 1;
+  TYPE_S = 2;
 }

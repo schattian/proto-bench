@@ -1,3 +1,5 @@
+.PHONY: all test clean
+
 test:
 	rm results.txt || true
 	go test -count=1 -bench=. | grep Benchmark_Go > results.txt
@@ -7,11 +9,11 @@ test:
 
 all: official gogo
 
-official: official.proto
-	docker run --rm -v $(CURDIR):/src:rw $(PROTOC_DOCKER_IMAGE) -I /src --go_out=paths=source_relative:./official official.proto
+official: def.proto
+	docker run --rm -v $(CURDIR):/src:rw $(PROTOC_DOCKER_IMAGE) -I /src --go_out=paths=source_relative:./official def.proto
 
-gogo: gogo.proto
-	docker run --rm -v $(CURDIR):/src:rw $(PROTOC_DOCKER_IMAGE) -I /src --gogofaster_out=paths=source_relative:./gogo gogo.proto
-
+gogo: def.proto
+	docker run --rm -v $(CURDIR):/src:rw $(PROTOC_DOCKER_IMAGE) -I=. --gogofaster_out=paths=source_relative:./gogo def.proto
+ 
 clean:
-	rm -f *.pb.go
+	rm -rf gogo official 
