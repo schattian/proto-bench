@@ -2,8 +2,9 @@
 
 test:
 	rm results.txt || true
-	go test -count=1 -bench=.  | grep Benchmark > results.txt
+	go test -bench=.  | grep Benchmark > results.txt
 	sort -o results.txt results.txt
+	echo "SIZE: $(SIZE)" >> results.txt
 	cat results.txt
 
 all: official gogo

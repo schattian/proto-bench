@@ -20,7 +20,7 @@ message Message {
     int32 value_i = 9;
     double value_d = 10;
   }
-  Book book = 11;
+  repeated Book books = 11;
   google.protobuf.Timestamp ts = 12 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
@@ -33,7 +33,11 @@ enum Type {
 message Book {
   string random_reader = 1;
   repeated string readers = 2;
-  Author Author = 3;
+  Author author = 3;
+  oneof letter {
+    int64 a_qt = 4;
+    int32 x_qt = 5;
+  }
 }
 
 message Author {
