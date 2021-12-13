@@ -13,7 +13,7 @@ This is a test suite for benchmarking various Go Protobuf libraries.
 ## Usage 
 
 ```bash
-SIZE=n make all
+PROTOC_DOCKER_IMAGE=$YOUR_DOCKER_IMAGE SIZE=n make all
 SIZE=n make test
 ```
 
