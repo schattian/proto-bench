@@ -22,6 +22,7 @@ message Message {
   }
   repeated Book books = 11;
   google.protobuf.Timestamp ts = 12 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+  map<string, uint32> rand_map = 13;
 }
 
 enum Type {

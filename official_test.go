@@ -26,6 +26,19 @@ func genOfficial(n int) []official.Message {
 			Type:     official.Type(rand.Intn(4)),
 			Values:   &official.Message_ValueS{ValueS: randString(5)},
 			Ts:       timestamppb.Now(),
+			RandMap: map[string]uint32{
+				"4358i45ja":          1,
+				"342342b":            1342,
+				"cfe3":               4351,
+				"43242d":             3281,
+				"dsadsae":            438291,
+				"sadsada":            321,
+				"321sadsada":         2141,
+				"sa342dsada":         213,
+				"sads4396itgada":     43951,
+				"sadsad423uitrjhera": 9345941,
+				"sfrejiufadsada":     134298,
+			},
 		}
 		for i := 0; i < testSize; i++ {
 			msg.Books = append(msg.Books, genOfficialBook())
